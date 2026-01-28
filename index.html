@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUO Interactive Campus Map</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="map-container">
+        <h1>PUO Interactive Campus Map</h1>
+        
+        <div id="svg-wrapper">
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                <rect id="jka" class="building" x="100" y="150" width="120" height="80" />
+                <text x="110" y="195" fill="white">JKA</text>
+
+                <circle id="library" class="building" cx="400" cy="300" r="50" />
+                <text x="375" y="305" fill="white">Library</text>
+                
+                </svg>
+        </div>
+
+        <div id="info-panel" class="hidden">
+            <h2 id="building-name">Select a Building</h2>
+            <p id="building-description">Click on a section of the map to see details.</p>
+            <button onclick="closePanel()">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
