@@ -1,15 +1,16 @@
+import './style.css';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
-const puoCoords = [101.1215, 4.5884]; 
 let currentIndex = -1;
-const markers = []; // To keep track of marker objects
+const markers = [];
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v12',
-    center: puoCoords,
+    style: 'mapbox://styles/mapbox/light-v11', // Cleaner look for campus maps
+    center: [101.1215, 4.5884],
     zoom: 16
 });
 
@@ -80,56 +81,45 @@ const locations = [
 
 // Initialize Markers
 locations.forEach((loc, index) => {
-    const el = document.createElement('div');
-    el.className = 'marker';
-    
     const marker = new mapboxgl.Marker({ color: '#003366' })
         .setLngLat(loc.coords)
         .addTo(map);
 
-    // Click event to open panel
-    marker.getElement().addEventListener('click', () => {
-        showLocation(index);
-    });
-
+    marker.getElement().addEventListener('click', () => showLocation(index));
     markers.push(marker);
 });
 
-window.showLocation = function(index) {
+function showLocation(index) {
     currentIndex = index;
     const loc = locations[index];
 
-    // 1. Update Panel Content
+    // Update UI
+    document.getElementById('panel-img').src = loc.img;
     document.getElementById('panel-title').innerText = loc.name;
     document.getElementById('panel-desc').innerText = loc.desc;
-    document.getElementById('panel-img').src = loc.img;
     document.getElementById('info-panel').style.display = 'block';
 
-    // 2. Reset all markers to Blue, set current to Red
+    // Highlight Marker (Red for current, Blue for others)
     markers.forEach((m, i) => {
-        const svg = m.getElement().querySelector('svg path');
-        if (i === index) {
-            svg.setAttribute('fill', '#ff0000'); // Red for selected
-        } else {
-            svg.setAttribute('fill', '#003366'); // Blue for default
-        }
+        const path = m.getElement().querySelector('svg path');
+        path.setAttribute('fill', i === index ? '#dc3545' : '#003366');
     });
 
-    // 3. Fly to the location
-    map.flyTo({ center: loc.coords, zoom: 17 });
-};
+    map.flyTo({ center: loc.coords, zoom: 17.5, duration: 1500 });
+}
 
-window.closePanel = function() {
+// Event Listeners (The Vite way)
+document.getElementById('closeBtn').addEventListener('click', () => {
     document.getElementById('info-panel').style.display = 'none';
     markers.forEach(m => m.getElement().querySelector('svg path').setAttribute('fill', '#003366'));
-};
+});
 
-window.nextLocation = function() {
+document.getElementById('nextBtn').addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % locations.length;
     showLocation(currentIndex);
-};
+});
 
-window.prevLocation = function() {
+document.getElementById('prevBtn').addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + locations.length) % locations.length;
     showLocation(currentIndex);
-};
+});
