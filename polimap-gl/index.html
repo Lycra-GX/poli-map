@@ -8,25 +8,27 @@
 <body>
     <div id="map"></div>
 
-    <div id="info-panel">
-        <div class="panel-header">
-            <div class="nav-arrows">
-                <button class="nav-btn" id="prevBtn"><i class="bi bi-chevron-left"></i></button>
-                <button class="nav-btn" id="nextBtn"><i class="bi bi-chevron-right"></i></button>
-            </div>
-            <div class="close-btn" id="closeBtn"><i class="bi bi-x-lg"></i></div>
-            <img id="panel-img" class="campus-img" src="" alt="Campus">
+<div id="info-panel">
+    <div class="panel-header">
+        <div class="nav-arrows">
+            <button class="nav-btn" id="prevBtn"><i class="bi bi-chevron-left"></i></button>
+            <button class="nav-btn" id="nextBtn"><i class="bi bi-chevron-right"></i></button>
         </div>
-        <div class="p-3">
-            <h5 id="panel-title" class="fw-bold mb-1"></h5>
-            <span class="badge bg-secondary mb-3">Campus Facility</span>
-            <p id="panel-desc" class="text-muted small"></p>
-            <div class="d-flex gap-3 text-success small fw-semibold">
-                <span><i class="bi bi-check-circle"></i> Dine-in</span>
-                <span><i class="bi bi-check-circle"></i> Takeaway</span>
-            </div>
-        </div>
+        <div class="close-btn" id="closeBtn"><i class="bi bi-x-lg"></i></div>
+        <img id="panel-img" class="campus-img" src="" alt="Campus" style="cursor: zoom-in;">
     </div>
+    <div class="p-3">
+        <h5 id="panel-title" class="fw-bold mb-1"></h5>
+        <p id="panel-desc" class="text-muted small"></p>
+    </div>
+</div>
+
+<div id="image-modal" class="modal-overlay">
+    <span class="modal-close" id="modalClose"><i class="bi bi-x-lg"></i></span>
+    <button class="modal-nav-btn prev" id="modalPrev"><i class="bi bi-chevron-left"></i></button>
+    <img id="modal-img-content" src="">
+    <button class="modal-nav-btn next" id="modalNext"><i class="bi bi-chevron-right"></i></button>
+</div>
     
     <script type="module" src="/main.js"></script>
 </body>
