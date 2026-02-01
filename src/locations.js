@@ -57,9 +57,9 @@ export const locations = [
         img: []
     },
     {
-        name: "Pusat Islam PUO",
+        name: "Kolej Kediaman PFI",
         coords: [101.1205, 4.5875],
-        desc: "Main prayer hall and religious activity center.",
+        desc: "Student accommodation for PFI students.",
         img: []
     },
     {
