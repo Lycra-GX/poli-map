@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // This must match your repository name
-  base: '/poli-map/', 
+  // base: '/poli-map/', <-- Remove or comment this out for Vercel
 })
