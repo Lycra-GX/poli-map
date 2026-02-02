@@ -16,13 +16,19 @@ const map = new mapboxgl.Map({
     zoom: 16
 });
 
-// Create markers
+// Create modern markers
 locations.forEach((loc, index) => {
     const el = document.createElement('div');
-    el.className = 'custom-marker';
+    el.className = 'custom-marker group'; // 'group' allows us to style children on hover
+    
     el.innerHTML = `
-        <div class="marker-name">${loc.name}</div>
-        <div class="marker-pin"></div>
+        <div class="marker-pulse"></div>
+        
+        <div class="marker-label">${loc.name}</div>
+        
+        <div class="relative flex items-center justify-center w-8 h-8 bg-blue-600 rounded-full border-2 border-white shadow-xl transition-transform duration-300 group-hover:scale-125 group-hover:bg-blue-500">
+            <i class="bi bi-geo-alt-fill text-white text-sm"></i>
+        </div>
     `;
 
     const marker = new mapboxgl.Marker(el)
