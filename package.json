@@ -12,6 +12,10 @@
     "bootstrap-icons": "^1.13.1",
     "mapbox-gl": "^3.18.1",
     "tailwindcss": "^4.1.18",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.4"
   }
 }
